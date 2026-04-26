@@ -19,44 +19,13 @@ body {
   flex-direction: column;
 }
 
+/* ---------- LAYOUT ---------- */
+
 .container {
   width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
-}
-
-.header {
-  background-color: #1f2937;
-  color: white;
-  padding: 20px 0;
-}
-
-.header-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  margin: 0;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.nav {
-  display: flex;
-  gap: 24px;
-}
-
-.nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 18px;
-}
-
-.nav a:hover {
-  text-decoration: underline;
 }
 
 .main {
@@ -65,23 +34,82 @@ body {
 }
 
 .main h2 {
-  font-size: 42px;
-  margin-top: 0;
+  font-size: 40px;
   margin-bottom: 25px;
 }
 
 .main p {
-  font-size: 22px;
+  font-size: 18px;
   line-height: 1.6;
-  max-width: 1000px;
 }
 
-.footer {
+/* ---------- HEADER ---------- */
+
+.header {
   background-color: #1f2937;
   color: white;
-  text-align: center;
-  padding: 20px 0;
+  padding: 15px 0;
 }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* логотип */
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* меню */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav a,
+.cart-button {
+  font-size: 16px;
+  color: white;
+  text-decoration: none;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
+
+.nav a.active {
+  border-bottom: 2px solid white;
+}
+
+/* ---------- CART ---------- */
+
+.cart-box {
+  position: relative;
+}
+
+.cart-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background-color: white;
+  color: #111827;
+  padding: 10px;
+  border-radius: 6px;
+  min-width: 150px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- CARDS ---------- */
 
 .cards {
   display: flex;
@@ -102,24 +130,66 @@ body {
   margin-bottom: 10px;
 }
 
+.card h3 {
+  margin: 10px 0;
+}
+
 .card button {
   margin-top: 10px;
+}
+
+/* ---------- BUTTON ---------- */
+
+button {
+  background: #1f2937;
+  color: white;
+  border: none;
   padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background: #374151;
+}
+
+/* ---------- DETAILS BUTTON ---------- */
+
+.details-btn {
+  display: inline-block;
+  margin-top: 10px;
+  background: #e5e7eb;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: #111827;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.details-btn:hover {
+  background: #d1d5db;
+}
+
+/* ---------- FOOTER ---------- */
+
+.footer {
   background-color: #1f2937;
   color: white;
-  border: none;
-  cursor: pointer;
+  text-align: center;
+  padding: 20px 0;
 }
+
+/* ---------- BANNER ---------- */
 
 .banner {
   background-color: #facc15;
-  color: #111827;
-  padding: 15px 20px;
+  padding: 15px;
   border-radius: 8px;
-  margin: 20px 0 30px 0;
-  font-size: 18px;
+  margin: 20px 0;
   font-weight: bold;
 }
+
+/* ---------- SPINNER ---------- */
 
 .spinner {
   width: 60px;
@@ -128,80 +198,10 @@ body {
   border-top: 6px solid #1f2937;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 50px auto 20px auto;
+  margin: 50px auto;
 }
 
 @keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.cart {
-  background-color: #e5e7eb;
-  padding: 12px 20px;
-  border-radius: 8px;
-  margin-bottom: 25px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.cart-box {
-  position: relative;
-}
-
-.cart-button {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  padding: 0;
-  font-family: Arial, sans-serif;
-}
-
-.cart-dropdown {
-  position: absolute;
-  top: 30px;
-  right: 0;
-  background-color: white;
-  color: #111827;
-  padding: 12px 16px;
-  border-radius: 6px;
-  min-width: 180px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.banner {
-  background-color: #facc15;
-  color: #111827;
-  padding: 15px 20px;
-  border-radius: 8px;
-  margin: 20px 0 30px 0;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 6px solid #d1d5db;
-  border-top: 6px solid #1f2937;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin: 50px auto 20px auto;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }

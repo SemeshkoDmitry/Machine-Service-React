@@ -1,13 +1,20 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+
 import Header from './components/Header'
-import Main from './components/Main'
 import Footer from './components/Footer'
+
+import HomePage from './pages/HomePage'
+import CatalogPage from './pages/CatalogPage'
+import MachineDetails from './pages/MachineDetails'
+import AboutPage from './pages/AboutPage'
+
 import './index.css'
 
 function App() {
   const [cartCount, setCartCount] = useState(() => {
-    const savedCart = localStorage.getItem('cartCount')
-    return savedCart ? Number(savedCart) : 0
+    const saved = localStorage.getItem('cartCount')
+    return saved ? Number(saved) : 0
   })
 
   useEffect(() => {
@@ -19,11 +26,22 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Header cartCount={cartCount} />
-      <Main onBuy={handleBuy} />
-      <Footer />
-    </div>
+    <Router>
+      <div className="app">
+        <Header cartCount={cartCount} />
+
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/catalog" element={<CatalogPage onBuy={handleBuy} />} />
+          <Route
+            path="/machine/:id"
+            element={<MachineDetails onBuy={handleBuy} />} />
+          <Route path="/about" element={<AboutPage />} />
+        </Routes>
+
+        <Footer />
+      </div>
+    </Router>
   )
 }
 

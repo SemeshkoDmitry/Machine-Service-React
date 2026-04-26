@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import { useState } from 'react'
 
 function Header({ cartCount }) {
@@ -9,9 +10,9 @@ function Header({ cartCount }) {
         <h1 className="logo">Machine Service</h1>
 
         <nav className="nav">
-          <a href="#">Головна</a>
-          <a href="#">Каталог</a>
-          <a href="#">Про нас</a>
+          <NavLink to="/">Головна</NavLink>
+          <NavLink to="/catalog">Каталог</NavLink>
+          <NavLink to="/about">Про нас</NavLink>
 
           <div className="cart-box">
             <button
@@ -23,7 +24,7 @@ function Header({ cartCount }) {
 
             {isCartOpen && (
               <div className="cart-dropdown">
-                <p>У кошику товарів: {cartCount}</p>
+                У кошику: {cartCount}
               </div>
             )}
           </div>
