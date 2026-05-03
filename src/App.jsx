@@ -8,6 +8,7 @@ import HomePage from './pages/HomePage'
 import CatalogPage from './pages/CatalogPage'
 import MachineDetails from './pages/MachineDetails'
 import AboutPage from './pages/AboutPage'
+import ContactsPage from './pages/ContactsPage'
 
 import './index.css'
 
@@ -37,6 +38,7 @@ function App() {
             path="/machine/:id"
             element={<MachineDetails onBuy={handleBuy} />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
         </Routes>
 
         <Footer />

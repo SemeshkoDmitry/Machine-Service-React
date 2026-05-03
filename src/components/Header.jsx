@@ -13,6 +13,7 @@ function Header({ cartCount }) {
           <NavLink to="/">Головна</NavLink>
           <NavLink to="/catalog">Каталог</NavLink>
           <NavLink to="/about">Про нас</NavLink>
+          <NavLink to="/contacts">Контакти</NavLink>
 
           <div className="cart-box">
             <button
