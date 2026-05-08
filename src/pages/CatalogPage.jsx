@@ -7,13 +7,13 @@ function CatalogPage({ onBuy }) {
   const [selectedCategory, setSelectedCategory] = useState('Усі')
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/machines')
+    fetch(`${import.meta.env.VITE_API_URL}/machines`)
       .then(res => res.json())
       .then(data => setMachines(data))
   }, [])
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/api/categories')
+    fetch(`${import.meta.env.VITE_API_URL}/categories`)
       .then(res => res.json())
       .then(data => setCategories(data))
   }, [])

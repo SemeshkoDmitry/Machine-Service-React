@@ -26,6 +26,8 @@ function App() {
     setCartCount(prev => prev + 1)
   }
 
+     
+
   return (
     <Router>
       <div className="app">
