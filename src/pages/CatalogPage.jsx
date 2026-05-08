@@ -1,38 +1,51 @@
 import { useEffect, useState } from 'react'
 import MachineCard from '../components/MachineCard'
-import { machines } from '../data/machines'
 
 function CatalogPage({ onBuy }) {
-  const [seconds, setSeconds] = useState(10)
+  const [machines, setMachines] = useState([])
+  const [categories, setCategories] = useState([])
+  const [selectedCategory, setSelectedCategory] = useState('Усі')
 
   useEffect(() => {
-    if (seconds <= 0) return
+    fetch('http://127.0.0.1:8000/api/machines')
+      .then(res => res.json())
+      .then(data => setMachines(data))
+  }, [])
 
-    const interval = setInterval(() => {
-      setSeconds(prev => prev - 1)
-    }, 1000)
+  useEffect(() => {
+    fetch('http://127.0.0.1:8000/api/categories')
+      .then(res => res.json())
+      .then(data => setCategories(data))
+  }, [])
 
-    return () => clearInterval(interval)
-  }, [seconds])
+  const filteredMachines =
+    selectedCategory === 'Усі'
+      ? machines
+      : machines.filter(
+          machine => machine.category === selectedCategory
+        )
 
   return (
     <main className="main">
       <div className="container">
         <h2>Каталог обладнання</h2>
 
-        <div className="banner">
-          {seconds > 0 ? (
-            <p>
-              Акція! Безкоштовна консультація з менеджером. 
-              Залишилось: {seconds} с.
-            </p>
-          ) : (
-            <p>Акція завершилась.</p>
-          )}
-        </div>
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+          className="filter"
+        >
+          <option>Усі</option>
+
+          {categories.map(category => (
+            <option key={category}>
+              {category}
+            </option>
+          ))}
+        </select>
 
         <div className="cards">
-          {machines.map(machine => (
+          {filteredMachines.map(machine => (
             <MachineCard
               key={machine.id}
               machine={machine}

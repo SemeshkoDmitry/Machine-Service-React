@@ -170,6 +170,16 @@ button:hover {
   background: #d1d5db;
 }
 
+.details-image {
+  width: 350px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  margin-top: 15px;
+}
+
 /* ---------- FOOTER ---------- */
 
 .footer {
@@ -253,4 +263,21 @@ button:hover {
   color: red;
   font-size: 14px;
   margin-top: 5px;
+}
+
+/* ---------- FILTER ---------- */
+.filter {
+  padding: 10px 15px;
+  margin-bottom: 25px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: white;
+  font-size: 16px;
+  color: #111827;
+  cursor: pointer;
+  outline: none;
+}
+
+.filter:hover {
+  border-color: #1f2937;
 }

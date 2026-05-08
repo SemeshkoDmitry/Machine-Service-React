@@ -1,12 +1,11 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import { machines } from '../data/machines'
 
 function MachineDetails({ onBuy }) {
   const navigate = useNavigate()
   const { id } = useParams()
 
-  const machine = machines.find(m => m.id === Number(id))
+  const [machine, setMachine] = useState(null)
 
   const [count, setCount] = useState(() => {
     const saved = localStorage.getItem(`machine-${id}`)
@@ -14,10 +13,24 @@ function MachineDetails({ onBuy }) {
   })
 
   useEffect(() => {
+    fetch(`http://127.0.0.1:8000/api/machines/${id}`)
+      .then(res => res.json())
+      .then(data => setMachine(data))
+  }, [id])
+
+  useEffect(() => {
     localStorage.setItem(`machine-${id}`, count)
   }, [count, id])
 
-  if (!machine) return <p>Не знайдено</p>
+  if (!machine) {
+    return (
+      <main className="main">
+        <div className="container">
+          <p>Завантаження...</p>
+        </div>
+      </main>
+    )
+  }
 
   const handleBuy = () => {
     setCount(prev => prev + 1)
@@ -29,19 +42,28 @@ function MachineDetails({ onBuy }) {
       <div className="container">
         <h2>{machine.name}</h2>
 
-        <img src={machine.image} alt={machine.name} style={{ width: '300px' }} />
+        <img
+          src={machine.image}
+          alt={machine.name}
+          className="details-image"
+        />
 
         <p><b>Послуга:</b> {machine.service}</p>
+
         <p><b>Ціна:</b> {machine.price} грн</p>
+
         <p>{machine.description}</p>
 
-        <button onClick={handleBuy}>Замовити</button>
+        <button onClick={handleBuy}>
+          Замовити
+        </button>
 
         <p>Кількість: {count}</p>
 
-        <br />
-
-        <button onClick={() => navigate('/catalog')}>
+        <button
+          className="back-button"
+          onClick={() => navigate('/catalog')}
+        >
           Назад до каталогу
         </button>
       </div>
